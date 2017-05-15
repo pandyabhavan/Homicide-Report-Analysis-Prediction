@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(leaflet)\n\n# Choices for drop-downs\nvars <- c(\n  \"Is SuperZIP?\" = \"superzip\",\n  \"Centile score\" = \"centile\",\n  \"College education\" = \"college\",\n  \"Median income\" = \"income\",\n  \"Population\" = \"adultpop\"\n)\n\n\nnavbarPage(\"Team-1\", id=\"nav\",\n           \n           tabPanel(\"Map\",\n                    div(class=\"outer\",\n                        \n                        tags$head(\n                          # Include our custom CSS\n                          includeCSS(\"styles.css\"),\n                          includeScript(\"gomap.js\")\n                        ),\n                        \n                        leafletOutput(\"map\", width=\"100%\", height=\"100%\"),\n                        conditionalPanel(\"0=1\",id = \"controls\", class = \"panel panel-default\", fixed = TRUE,\n                                         width = 330, height = \"auto\",\n                                         \n                                         h2(\"ZIP explorer\"),\n                                         \n                                         selectInput(\"color\", \"Color\", vars),\n                                         selectInput(\"size\", \"Size\", vars, selected = \"adultpop\"),\n                                         conditionalPanel(\"input.color == 'superzip' || input.size == 'superzip'\",\n                                                          # Only prompt for threshold when coloring or sizing by superzip\n                                                          numericInput(\"threshold\", \"SuperZIP threshold (top n percentile)\", 5)\n                                         ),\n                                         \n                                         plotOutput(\"histCentile\", height = 200),\n                                         plotOutput(\"scatterCollegeIncome\", height = 250)\n                        )\n                    )\n           ),\n           tabPanel(\"Charts\",\n                    h3(\"Top 4 Victim race VS perpetrator race 18+\"),\n                    plotOutput(\"victimRacevsperpetrator\"),\n                    h3(\"Top 20 Female VS Male VS Weapon Used 18+\"),\n                    plotOutput(\"femalevsmalevsweapon\"),\n                    h3(\"Weapon Used\"),\n                    plotOutput(\"weaponUsed\"),\n                    h3(\"Female Killed by: Male killed by: 18+\"),\n                    plotOutput(\"femalevsmalekilledby\"),\n                    h3(\"Who Killed Who! Number of Incidents VS Family Relationship\"),\n                    plotOutput(\"whokilledwho\"),\n                    h3(\"Friends vs Sex\"),\n                    plotOutput(\"friendsvssex\"),\n                    h3(\"Employee VS Employer\"),\n                    plotOutput(\"employeevsemployer\"),\n                    h3(\"Ex-Husband VS Ex-Wife\"),\n                    plotOutput(\"exhusbandvsexwife\"),\n                    h3(\"Girlfriend vs Boyfriend\"),\n                    plotOutput(\"gfvsbf\"),\n                    h3(\"Incidents per Year\"),\n                    plotOutput(\"incidents\")\n           ),\n           tabPanel(\"Prediction\",\n                    h3(\"Top 5 Perpetrator Age vs Victim Age vs Weapon\"),\n                    plotOutput(\"perpetratorvsvictimAgevsweapon\"),\n                    h3(\"Incident Prediciton\"),\n                    plotOutput(\"incidentprediction\")\n                    ),\n           \n           tabPanel(\"Data explorer\",\n                    fluidRow(\n                      DT::dataTableOutput(\"homicideData\")\n                    )\n           )\n)\n",
+    "created" : 1494630909795.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2247409722",
+    "id" : "DCDEBC08",
+    "lastKnownWriteTime" : 1494547167,
+    "last_content_update" : 1494547167,
+    "path" : "C:/Users/pandy/Desktop/063-superzip-example/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
